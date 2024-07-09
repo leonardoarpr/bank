@@ -17,7 +17,7 @@ class EventManagerInterface(ABC):
         pass
 
     @abstractmethod
-    def find_event(self, destination) -> any:
+    def find_event(self, destination: str) -> any:
         pass
 
     @abstractmethod

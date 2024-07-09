@@ -12,7 +12,7 @@ class TestEventManager(unittest.TestCase):
     @patch('builtins.open', new_callable=mock_open, read_data='[]')
     def setUp(self, mock_file):
         self.test_file = 'test_events.json'
-        self.manager = EventManager(account_path=os.getenv('ACCOUNT_PATH'))
+        self.manager = EventManager()
 
     def tearDown(self):
         if os.path.exists(self.test_file):

@@ -5,13 +5,14 @@ from dataclasses import asdict
 from app.src.domain.dto.event_dto import EventDTO, AccountDTO
 from app.src.domain.exception.event_exception import AccountNotFound, InsufficientFunds
 from app.src.domain.interface.EventManagerInterface import EventManagerInterface
+from app.src.infrastructure.config import Config
 
 ident = 4
 
 
 class EventManager(EventManagerInterface):
-    def __init__(self, account_path: str):
-        self.event_file = account_path
+    def __init__(self):
+        self.event_file = Config().ACCOUNT_PATH
         self.events = self.read_events()
 
     def read_events(self) -> tuple:

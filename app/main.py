@@ -9,7 +9,7 @@ from app.src.infrastructure.form_request.validate_request import event_validator
 app = Flask(__name__)
 app.config.from_object(Config())
 
-event_manager = EventManager(app.config['ACCOUNT_PATH'])
+event_manager = EventManager()
 
 
 @app.route('/event', methods=['POST'])
