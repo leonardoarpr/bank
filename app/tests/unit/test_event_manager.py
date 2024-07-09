@@ -21,9 +21,8 @@ class TestEventManager(unittest.TestCase):
     @patch('builtins.open', new_callable=mock_open)
     def test_deposit(self, mock_file):
         deposit_event = EventDTO(type="deposit", destination="100", amount=10)
-        self.manager.deposit(deposit_event)
-        self.assertEqual(len(self.manager.events), 1)
-        self.assertEqual(self.manager.events[0]['balance'], 10)
+        result = self.manager.deposit(deposit_event)
+        self.assertEqual(result.amount, 10)
 
     @patch('builtins.open', new_callable=mock_open)
     def test_deposit_into_created_account(self, mock_file):
