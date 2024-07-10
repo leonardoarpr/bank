@@ -3,3 +3,4 @@
 .coverage
 app/htmlcov
 __pycache__
+app/data/events.json

@@ -6,7 +6,7 @@ services:
     build: .
     volumes:
       - ./app:/app/app/
-      - ./app/data:/app/data/
+      - ./app/data:/app/app/data
       - ./app/htmlcov/:/app/app/htmlcov/
     env_file:
       - .env
