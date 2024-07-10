@@ -38,4 +38,4 @@ test: docker-up
 	docker exec -t $(CONTAINER_NAME) python -m unittest discover app/tests/unit
 
 coverage-test: docker-up
-	docker exec -t $(CONTAINER_NAME) python -m pytest --cov-report html --cov app/src/
+	docker exec -t $(CONTAINER_NAME) python -m pytest --cov-report term-missing --cov-fail-under=80 --cov=app/src/

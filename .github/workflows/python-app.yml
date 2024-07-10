@@ -13,10 +13,8 @@ permissions:
   contents: read
 
 jobs:
-  build:
-
+  build-test:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.10
@@ -29,3 +27,8 @@ jobs:
     - name: Test with coverage
       run: |
         make coverage-test
+    - name: Upload coverage badge
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage-badge
+        path: coverage.svg
