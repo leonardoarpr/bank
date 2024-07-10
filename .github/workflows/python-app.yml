@@ -27,8 +27,15 @@ jobs:
     - name: Test with coverage
       run: |
         make coverage-test
-    - name: Upload coverage badge
-      uses: actions/upload-artifact@v3
+    - name: Generate coverage badge
+      run: coverage-badge -o coverage.svg
+
+    - name: Display coverage percentage
+      run: |
+      echo "Coverage Percentage: $(sed -n 's/.*<text x="23" y="18" class="coverage-percentage">\([^%]*\)%<\/text>.*/\1/p' coverage.svg)%"
+
+    - name: Upload coverage badge as artifact
+      uses: actions/upload-artifact@v2
       with:
         name: coverage-badge
         path: coverage.svg
