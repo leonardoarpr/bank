@@ -26,16 +26,10 @@ jobs:
         python -m pip install -r app/requirements.txt
     - name: Test with coverage
       run: |
+        rm -f coverage.svg
         make coverage-test
-    - name: Generate coverage badge
-      run: coverage-badge -o coverage.svg
-
-    - name: Display coverage percentage
-      run: |
-      echo "Coverage Percentage: $(sed -n 's/.*<text x="23" y="18" class="coverage-percentage">\([^%]*\)%<\/text>.*/\1/p' coverage.svg)%"
-
-    - name: Upload coverage badge as artifact
-      uses: actions/upload-artifact@v2
+    - name: Upload coverage badge
+      uses: actions/upload-artifact@v3
       with:
         name: coverage-badge
         path: coverage.svg
