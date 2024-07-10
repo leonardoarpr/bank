@@ -48,7 +48,7 @@ class EventManager(EventManagerInterface):
         return data
 
     def withdraw(self, data: EventDTO) -> EventDTO:
-        existing_record = self.find_event(data.destination)
+        existing_record = self.find_event(data.origin)
         if existing_record:
             if existing_record['balance'] >= data.amount:
                 existing_record['balance'] -= data.amount
@@ -61,7 +61,10 @@ class EventManager(EventManagerInterface):
     def transfer(self, data: EventDTO) -> (list, list):
         origin_record = self.find_event(data.origin)
         destination_record = self.find_event(data.destination)
-        if origin_record and destination_record:
+        if destination_record is None:
+            self.deposit(EventDTO(amount=0, destination=data.destination, type="deposit"))
+            destination_record = self.find_event(data.destination)
+        if origin_record:
             if origin_record['balance'] >= data.amount:
                 origin_record['balance'] -= data.amount
                 destination_record['balance'] += data.amount
