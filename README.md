@@ -1,3 +1,5 @@
+![Coverage](coverage.svg)
+
 # Bank
 test project
 
