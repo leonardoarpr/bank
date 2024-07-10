@@ -4,8 +4,8 @@ from dataclasses import dataclass
 @dataclass
 class EventDTO:
     type: str
-    destination: str
     amount: int
+    destination: str = None
     origin: str = None
 
 
